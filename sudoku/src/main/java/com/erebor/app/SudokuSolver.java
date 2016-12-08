@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.lang.System;
 import java.io.*;
+import java.lang.*;
 
 class Const{
 	public static final int N = 9; 
@@ -64,8 +65,13 @@ public class SudokuSolver{
 		if (cur == -1){
 			return false;
 		}
+		try {
+			return vsv.elementAt(cur).set(i,j,value);
+		} catch (ArrayIndexOutOfBoundsException aioobe){
+			System.out.println(aioobe.getMessage());
 
-		return vsv.elementAt(cur).set(i,j,value);
+			return false;
+		}
 	}
 
 	public void showCurrent(){
@@ -85,13 +91,23 @@ public class SudokuSolver{
 		return false;
 	}
 
-	public void chooseRandom() {
+	public int get(int i, int j){
+		return vsv.elementAt(cur).get(i,j);
+	}
+
+	public boolean chooseRandom() {
+		if (vsv.size() == 0){
+			System.out.println("No games");
+			return false;
+		}
 		cur = r.nextInt(vsv.size());
 		if (vsv.elementAt(cur).solve()){
 			System.out.println(vsv.elementAt(cur).checkSolved() ? "solved good" : "solved bad");
+			return true;
 		} else {
 			System.out.println("can't solve");
 			cur = -1;
+			return false;
 		}
 	}
 }

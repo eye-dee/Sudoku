@@ -163,6 +163,10 @@ public class SudokuView{
 		return true;
 	}
 
+	public int get(int i, int j){
+		return _cur[i][j];
+	}
+
 	boolean isRightColumn(int i, int j){
 		int[] var = new int[Const.N];
 		for (int k = 0; k < Const.N; ++k){

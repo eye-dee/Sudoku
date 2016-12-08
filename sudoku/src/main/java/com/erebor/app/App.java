@@ -2,6 +2,7 @@ package com.erebor.app;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import javax.swing.*;
 
 public class App
 {
