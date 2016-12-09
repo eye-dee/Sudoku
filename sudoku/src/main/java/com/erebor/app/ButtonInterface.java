@@ -61,14 +61,19 @@ public class ButtonInterface implements ActionListener{
 			if (_s.chooseRandom()) {
 				for (int i = 0; i < Const.N; ++i){
 					for (int j = 0; j < Const.N; ++j){
-						tfc.set(i,
-							j,
-							_s.get(i,j));
+						tfc.set(i,j,_s.get(i,j));
 					}
 				}
 			}
 		} else if ("get_hint".equals(e.getActionCommand())){
-			_s.showHint();
+			String res =  _s.showHint();
+			JOptionPane.showMessageDialog(frame, res);
+
+			if (!res.equals("No current game")){
+				tfc.setHint(res.charAt(4) - '0', res.charAt(6) - '0');
+			} else {
+				tfc.setHint(-1,-1);
+			}
 		} else if ("read".equals(e.getActionCommand())){
 			_s.readFile("file");
 		} else if ("exit".equals(e.getActionCommand())){

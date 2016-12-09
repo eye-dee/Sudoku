@@ -52,13 +52,18 @@ public class SudokuSolver{
 			return false;
 	}
 
-	public void showHint(){
+	public String showHint(){
+		String res;
 		if (cur == -1){
 			System.out.println("No current game");
-			return;
+			res = new String("No current game");
+			return res;
 		}
 
-		System.out.println(vsv.elementAt(cur).getHint());
+		res = new String(vsv.elementAt(cur).getHint());
+		System.out.println(res);
+
+		return res;
 	}
 
 	public boolean set(int i,int j, int value){
